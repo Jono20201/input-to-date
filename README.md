@@ -17,29 +17,26 @@ if you want to send them nice errors about invalid input.
 The following example would return a Carbon object with the correct date.
 ```php
     $user_input = '01/01/2016 09:30:30'
-    $date = InputToDate::create($user_input)
-                        ->setFormat('d/m/Y H:i:s')
-                        ->convert();
+    $date = InputToDate::create('d/m/Y H:i:s')
+                        ->convert($user_input);
 ```
 
 The following example has incorrect input, and will return `null` as we have asked it to by running
 the `setReturnNullOnFailure()` method.
 ```php
     $user_input = '01/01/2016 09:30:30'
-    $date = InputToDate::create($user_input)
-                        ->setFormat('d/m/Y')
+    $date = InputToDate::create('d/m/Y')
                         ->setReturnNullOnFailure()
-                        ->convert();
+                        ->convert($user_input);
 ```
 
 The following example will return this current time as its incorrect, but as have asked
 for a default of `Carbon::now()`.
 ```php
     $user_input = '01/01/2016 09:30:30'
-    $date = InputToDate::create($user_input)
-                        ->setFormat('d/m/Y')
+    $date = InputToDate::create('d/m/Y')
                         ->setDefault(Carbon::now())
-                        ->convert();
+                        ->convert($user_input);
 ```
 
 The following will throw an `InvalidArgumentException` exception as the input is incorrect
@@ -47,9 +44,8 @@ and we have not set any other default. You can also explicitly add the `throwExc
 method.
 ```php
     $user_input = '01/01/2016 09:30:30'
-    $date = InputToDate::create($user_input)
-                        ->setFormat('d/m/Y')
-                        ->convert();
+    $date = InputToDate::create('d/m/Y')
+                        ->convert($user_input);
 ```
 
 ## Contribute

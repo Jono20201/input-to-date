@@ -32,20 +32,21 @@ class InputToDate
      */
     protected $nullOnException = false;
 
+    public function __construct($format = null)
+    {
+        if ($format) {
+            $this->setFormat($format);
+        }
+    }
+
     /**
-     * @param null $input
+     * @param null $format
      *
      * @return InputToDate
      */
-    public static function create($input = null)
+    public static function create($format = null)
     {
-        $instance = new self();
-
-        if ($input) {
-            $instance->setInput($input);
-        }
-
-        return $instance;
+        return new self($format);
     }
 
     /**
