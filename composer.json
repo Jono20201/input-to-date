@@ -1,5 +1,5 @@
 {
-  "name": "jono20201/InputToDate",
+  "name": "jono20201/input-to-date",
   "description": "A small PHP library that assists with converting your user input into a Carbon object",
   "type": "library",
   "keywords": ["date", "input", "parse", "validate"],
