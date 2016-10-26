@@ -4,6 +4,7 @@ namespace Tests\Unit\Helpers;
 
 use Carbon\Carbon;
 use InputToDate\InputToDate;
+use InvalidArgumentException;
 use PHPUnit_Framework_TestCase;
 
 class InputToDateTest extends PHPUnit_Framework_TestCase
@@ -17,6 +18,7 @@ class InputToDateTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('12/03/1995', $i2d->getInput());
         $this->assertEquals('d/m/Y', $i2d->getFormat());
     }
+
 
     /** @test */
     public function it_can_be_initialised_with_a_default()
@@ -53,6 +55,7 @@ class InputToDateTest extends PHPUnit_Framework_TestCase
             ->setFormat('d/m/Y');
 
         $this->assertTrue($i2d->willThrowException());
+        $this->expectException(InvalidArgumentException::class);
 
         $i2d->convert();
     }
@@ -81,5 +84,17 @@ class InputToDateTest extends PHPUnit_Framework_TestCase
             ->convert();
 
         $this->assertEquals($default, $converted);
+    }
+
+    /** @test */
+    public function it_can_accept_user_input_on_convert_method()
+    {
+        $carbon = Carbon::createFromDate(2003, 3, 20);
+
+        $converted = InputToDate::create()
+            ->setFormat('d/m/Y')
+            ->convert('20/03/2003');
+
+        $this->assertEquals($carbon, $converted);
     }
 }

@@ -33,16 +33,16 @@ class InputToDate
     protected $nullOnException = false;
 
     /**
-     * @param null $date
+     * @param null $input
      *
      * @return InputToDate
      */
-    public static function create($date = null)
+    public static function create($input = null)
     {
         $instance = new self();
 
-        if ($date) {
-            $instance->setInput($date);
+        if ($input) {
+            $instance->setInput($input);
         }
 
         return $instance;
@@ -151,10 +151,18 @@ class InputToDate
     }
 
     /**
+     * @param string $input
+     *
+     * @throws \InvalidArgumentException
+     *
      * @return Carbon|null
      */
-    public function convert()
+    public function convert($input = null)
     {
+        if ($input) {
+            $this->setInput($input);
+        }
+
         try {
             return Carbon::createFromFormat($this->getFormat(), $this->getInput());
         } catch (InvalidArgumentException $e) {
