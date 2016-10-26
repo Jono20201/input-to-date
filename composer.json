@@ -1,0 +1,22 @@
+{
+  "name": "jono20201/input2date",
+  "description": "A small PHP library that assists with converting your user input into a Carbon object",
+  "type": "library",
+  "keywords": ["date", "input", "parse", "validate"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jonathan Martin",
+      "email": "jono20201@gmail.com"
+    }
+  ],
+  "require": {
+    "phpunit/phpunit": "^5.6",
+    "nesbot/carbon": "^1.21"
+  },
+  "autoload": {
+    "psr-4": {
+      "InputToDate\\": "src/"
+    }
+  }
+}
