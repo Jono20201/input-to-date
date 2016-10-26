@@ -22,12 +22,13 @@ The following example would return a Carbon object with the correct date.
                         ->convert();
 ```
 
-The following example has incorrect input, and will return `null` as we have no default
-and we have not asked it to throw an exception.
+The following example has incorrect input, and will return `null` as we have asked it to by running
+the `setReturnNullOnFailure()` method.
 ```php
     $user_input = '01/01/2016 09:30:30'
     $date = InputToDate::create($user_input)
                         ->setFormat('d/m/Y')
+                        ->setReturnNullOnFailure()
                         ->convert();
 ```
 
@@ -41,12 +42,13 @@ for a default of `Carbon::now()`.
                         ->convert();
 ```
 
-The following will throw an `InvalidArgumentException` exception as the input is incorrect.
+The following will throw an `InvalidArgumentException` exception as the input is incorrect
+and we have not set any other default. You can also explicitly add the `throwException()`
+method.
 ```php
     $user_input = '01/01/2016 09:30:30'
     $date = InputToDate::create($user_input)
                         ->setFormat('d/m/Y')
-                        ->throwException()
                         ->convert();
 ```
 
