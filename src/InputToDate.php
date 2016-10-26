@@ -34,7 +34,7 @@ class InputToDate
 
     public function __construct($format = null)
     {
-        if ($format) {
+        if ($format !== null) {
             $this->setFormat($format);
         }
     }
@@ -160,7 +160,7 @@ class InputToDate
      */
     public function convert($input = null)
     {
-        if ($input) {
+        if ($input !== null) {
             $this->setInput($input);
         }
 

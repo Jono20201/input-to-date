@@ -114,4 +114,30 @@ class InputToDateTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($carbon, $converted);
     }
+
+    /** @test */
+    public function you_can_use_converter_multiple_times()
+    {
+        $converter = InputToDate::create('d/m/Y');
+
+        $time1 = Carbon::create(2016, 10, 1);
+        $time2 = Carbon::create(2013, 10, 1);
+
+        $this->assertTrue($time1->eq($converter->convert('01/10/2016')));
+        $this->assertTrue($time2->eq($converter->convert('01/10/2013')));
+    }
+
+    /** @test */
+    public function you_can_use_converter_multiple_times_including_passing_empty_values()
+    {
+        $converter = InputToDate::create('d/m/Y')->setReturnNullOnFailure();
+
+        $time1 = Carbon::create(2016, 10, 1);
+        $time2 = null;
+        $time3 = Carbon::create(2016, 10, 2);
+
+        $this->assertTrue($time1->eq($converter->convert('01/10/2016')));
+        $this->assertNull($converter->convert(''));
+        $this->assertTrue($time3->eq($converter->convert('02/10/2016')));
+    }
 }
