@@ -12,7 +12,7 @@ if you want to send them nice errors about invalid input.
 - Throw an Exception or return a default upon error/empty input.
 - Fluent API
 
-##Usage
+## Usage
 
 The following example would return a Carbon object with the correct date.
 ```php
